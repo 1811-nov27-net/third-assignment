@@ -66,7 +66,7 @@ values
 
 insert into sdb.Orders (ProductID, CustomerID) values (4,4);
 
-select o.OrderID from sdb.Orders as o inner join sdb.Customers as c on c.CustomerID = o.CustomerID where c.FirstName = 'Tina' and c.LastName = 'Smith';
+select c.LastName,o.OrderID,p.Name as [Product Name] from sdb.Orders as o inner join sdb.Customers as c on c.CustomerID = o.CustomerID inner join sdb.Products as p on p.ProductID=o.ProductID where c.FirstName = 'Tina' and c.LastName = 'Smith';
 
 
 
