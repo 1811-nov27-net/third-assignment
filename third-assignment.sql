@@ -66,3 +66,33 @@ INSERT INTO SH.Orders(ProductID, CustomerID) VALUES
 ((SELECT TOP(1)ID FROM SH.Products WHERE Name = 'Desktop'),(SELECT TOP(1)ID FROM SH.Customer WHERE FirstName = 'Joel')),
 ((SELECT TOP(1)ID FROM SH.Products WHERE Name = 'Phone'), (SELECT TOP(1)ID FROM SH.Customer WHERE FirstName = 'Michael'));
 
+INSERT INTO  SH.Products(Name, Price) VALUES
+('iPhone', 200);
+
+INSERT INTO SH.Customer(FirstName, LastName, CardNumber) VALUES 
+('Tina' , 'Smith', 4589082);
+
+SELECT * 
+FROM SH.Customer;
+
+SELECT * 
+FROM SH.Products;
+
+INSERT INTO SH.Orders(ProductID, CustomerID) VALUES
+((SELECT TOP(1)ID FROM SH.Products WHERE Name = 'iPhone'),(SELECT TOP(1)ID FROM SH.Customer WHERE FirstName = 'Tina'));
+
+SELECT ('Tina') as CustomerName, *
+FROM SH.Orders 
+WHERE CustomerID = 5;
+
+SELECT COALESCE(SUM(Products.Price),0.00) AS [Total Revenue by iPhone] 
+FROM SH.Products
+	JOIN SH.Orders AS o ON SH.Products.ID = o.ProductID
+WHERE o.ProductID IN (SELECT ID FROM SH.Products WHERE ID = 4);
+
+UPDATE SH.Products
+SET Price = 450
+WHERE ID IN (SELECT ID FROM SH.Products WHERE Name = 'iPhone');
+
+SELECT *
+FROM SH.Products;
