@@ -15,13 +15,16 @@ create table sdb.Products
 
 );
 
+
+-- drop table sdb.Customers
+
 create table sdb.Customers
 (
 	CustomerID int identity not null,
 	FirstName nvarchar(100) not null,
 	LastName nvarchar(100) not null,
 	CardNumber int null,
-	constraint PK_Products_id primary key (CustomerID)
+	constraint PK_Customers_id primary key (CustomerID)
 
 );
 create table sdb.Orders
