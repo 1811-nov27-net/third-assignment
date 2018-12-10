@@ -63,3 +63,16 @@ values
 
 insert into sdb.Orders (ProductID, CustomerID) values (4,4);
 
+select o.OrderID from sdb.Orders as o inner join sdb.Customers as c on c.CustomerID = o.CustomerID where c.FirstName = 'Tina' and c.LastName = 'Smith';
+
+
+
+select sum(p.Price) as [Total Sold]
+	from sdb.Products as p
+	inner join sdb.Orders as o on p.ProductID = o.ProductID
+	where p.Name = 'iPhone'
+	group by o.ProductID;
+	
+update sdb.Products
+set Price = 250
+where Name = 'iPhone';
