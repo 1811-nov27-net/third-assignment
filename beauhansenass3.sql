@@ -26,7 +26,7 @@ CREATE TABLE Store.Orders
 	CustomerID INT NOT NULL
 	CONSTRAINT PK_Orders_ID PRIMARY KEY (ID)
 )
-
+-- table could likely be improved by including quantity purchased to allow the storage of the events that a customor buys more than one copy of the same product-- no time
 ALTER TABLE Store.Orders
 	ADD CONSTRAINT FK_Orders_Products_ProductID FOREIGN KEY (ProductID) REFERENCES Store.Products(ID)
 
@@ -51,15 +51,23 @@ VALUES ('Raheem', 'Sterling', 123456789781)
 
 INSERT INTO Store.Orders (ProductID, CustomerID)
 VALUES (4, 1)
+INSERT INTO Store.Orders (ProductID, CustomerID)
+VALUES (1, 1)
+INSERT INTO Store.Orders (ProductID, CustomerID)
+VALUES (2, 2)
+INSERT INTO Store.Orders (ProductID, CustomerID)
+VALUES (4, 3)
 
 SELECT p.ID, p.Name, p.Price FROM Store.Orders AS o
 	INNER JOIN Store.Customers AS c ON o.CustomerID = c.ID
 	INNER JOIN Store.Products AS p ON o.ProductID = p.ID
 WHERE c.FirstName = 'Tina' AND c.LastName ='Smith'
 
-SELECT SUM(p.Price) FROM Store.Products AS p
+SELECT SUM(p.Price) AS [Revenue from iPhone Sales] FROM Store.Products AS p
 	INNER JOIN Store.Orders AS o ON p.ID = o.ProductID
-WHERE 
+WHERE o.ProductID = 4 -- I know a subquery here would be better to retreive the productID of iPhone, but I fear I don't have enough time.
+
+
 
 UPDATE Store.Products
 SET Price = 250
