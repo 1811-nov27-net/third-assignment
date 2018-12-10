@@ -58,5 +58,5 @@ INSERT INTO a3.Orders(ProductID, CustomerID) VALUES(4,4);
 
 SELECT * FROM a3.Orders AS o WHERE o.CustomerID = 4;
 
-SELECT COUNT(o.ProductID)*  FROM a3.Orders AS o WHERE o.ProductID = 4;
+SELECT COUNT(o.ProductID)*p.Price  FROM a3.Orders AS o, a3.Products AS p WHERE o.ProductID = 4;
 
