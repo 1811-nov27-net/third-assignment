@@ -36,6 +36,14 @@ create table sdb.Orders
 
 );
 
+alter table sdb.Orders
+	add constraint FK_Order_Product Foreign key (ProductID) References sdb.Products (ProductID);
+
+alter table sdb.Orders
+	add constraint FK_Order_Customers Foreign key (CustomersID) References sdb.Customers (CustomersID);
+
+
+
 insert into sdb.Products(Name, Price)
 values
 ('iPad', 600),
