@@ -28,6 +28,16 @@ CREATE TABLE Store.Orders
 )
 -- table could likely be improved by including quantity purchased to allow the storage of the events that a customor buys more than one copy of the same product-- no time
 ALTER TABLE Store.Orders
+	ADD QtyPurchase INT NOT NULL DEFAULT(0)
+ALTER TABLE Store.Orders
+	ALTER Column QtyPurchase
+
+SELECT * FROM Store.Orders
+	
+
+
+-- PLEASE disregard code b/t comments
+ALTER TABLE Store.Orders
 	ADD CONSTRAINT FK_Orders_Products_ProductID FOREIGN KEY (ProductID) REFERENCES Store.Products(ID)
 
 ALTER TABLE Store.Orders
