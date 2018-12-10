@@ -1,5 +1,5 @@
-use adventureworks;
-go
+--use adventureworks;
+--go
 
 -- drop tables
 drop table if exists thirdassignment.orders;
@@ -16,7 +16,7 @@ go
 
 create table thirdassignment.products(
 	id int IDENTITY(1,1) NOT NULL,
-	productName nvarchar(100) NOT NULL,
+	name nvarchar(100) NOT NULL,
 	price money NOT NULL
 );
 
@@ -48,26 +48,26 @@ alter table thirdassignment.orders
 	add constraint FK_Order_Customer foreign key (customerId) references thirdassignment.customers (id);
 
 --Insert
-insert into thirdassignment.products ("productName", "price") values
-("Product 1", 10),
-("Product 2", 20),
-("Product 3", 30);
+insert into thirdassignment.products (name, price) values
+('Product 1', 10),
+('Product 2', 20),
+('Product 3', 30);
 
 insert into thirdassignment.customers (firstName, lastName, cardnumber) values
-("First Name 1", "Last Name 1", "1111111111111111"),
-("First Name 2", "Last Name 2", "2222222222222222"),
-("First Name 3", "Last Name 3", "3333333333333333");
+('First Name 1', 'Last Name 1', '1111111111111111'),
+('First Name 2', 'Last Name 2', '2222222222222222'),
+('First Name 3', 'Last Name 3', '3333333333333333');
 
 insert into thirdassignment.orders (productId, customerId) values
 (1,1),
 (2,2),
 (3,3);
 
-insert into thirdassignment.products ("productName", "price") values
-("IPhone", 200);
+insert into thirdassignment.products (name, price) values
+('IPhone', 200);
 
 insert into thirdassignment.customers (firstName, lastName, cardnumber) values
-("Tina", "Smith", "4444444444444444");
+('Tina', 'Smith', '4444444444444444');
 
 
 insert into thirdassignment.orders (productId, customerId) values
@@ -76,16 +76,19 @@ insert into thirdassignment.orders (productId, customerId) values
 select o.* from thirdassignment.orders o
 	inner join thirdassignment.customers c
 		on o.customerId = c.id
-where c.firstName = "Tina"
-	and c.lastName = "Smith";
+where c.firstName = 'Tina'
+	and c.lastName = 'Smith';
 
 select Sum(price)*count(*) as revenues
 from thirdassignment.orders o
 	inner join thirdassignment.products p
 		on o.productId = p.id
-where	p.productName = "Iphone";
+where	p.name = 'Iphone';
 
 
 UPDATE thirdassignment.products
 SET price = '250'
-WHERE productName = "Iphone";
+WHERE name = 'Iphone';
+
+select * from thirdassignment.products
+where name = 'IPhone';
